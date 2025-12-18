@@ -72,8 +72,25 @@ public class Main {
         return total;
     }
 
-    public static int commodityProfitInRange(String commodity, int from, int to) {
-        return 1234;
+    public static int commodityProfitInRange(String commodity, int fromDay, int toDay) {
+        int commodityIndex = -1;
+        for (int c = 0; c < COMMS; c++) {
+            if (commodities[c].equals(commodity)) {
+                commodityIndex = c;
+            }
+        }
+        if (commodityIndex == -1 || fromDay < 1 || toDay > DAYS || fromDay > toDay) {
+            return -99999;
+        }
+        int total = 0;
+        fromDay = fromDay - 1;
+        toDay = toDay - 1;
+        for (int m = 0; m < MONTHS; m++) {
+            for (int d = fromDay; d <= toDay; d++) {
+                total = total + profits[m][d][commodityIndex];
+            }
+        }
+        return total;
     }
 
     public static int bestDayOfMonth(int month) { 
