@@ -115,8 +115,32 @@ public class Main {
         return bestDayIndex + 1;
     }
     
-    public static String bestMonthForCommodity(String comm) { 
-        return "DUMMY"; 
+    public static String bestMonthForCommodity(String comm) {
+        int commodityIndex = -1;
+        for (int c = 0; c < COMMS; c++) {
+            if (commodities[c].equals(comm)) {
+                commodityIndex = c;
+            }
+        }
+        if (commodityIndex == -1) {
+            return "INVALID_COMMODITY";
+        }
+        int bestMonthIndex = 0;
+        int maxProfit = 0;
+        for (int d = 0; d < DAYS; d++) {
+            maxProfit = maxProfit + profits[0][d][commodityIndex];
+        }
+        for (int m = 1; m < MONTHS; m++) {
+            int sum = 0;
+            for (int d = 0; d < DAYS; d++) {
+                sum = sum + profits[m][d][commodityIndex];
+            }
+            if (sum > maxProfit) {
+                maxProfit = sum;
+                bestMonthIndex = m;
+            }
+        }
+        return months[bestMonthIndex];
     }
 
     public static int consecutiveLossDays(String comm) { 
