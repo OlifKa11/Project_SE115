@@ -42,6 +42,9 @@ public class Main {
     // ======== 10 REQUIRED METHODS (Students fill these) ========
 
     public static String mostProfitableCommodityInMonth(int month) {
+        if (month < 0 || month >= MONTHS) {
+            return "INVALID_MONTH";
+        }
         int maxProfit = profits[month][0][0];
         int bestCommodityIndex = 0;
         for (int c = 0; c < COMMS; c++) {
@@ -54,11 +57,11 @@ public class Main {
                 bestCommodityIndex = c;
             }
         }
-        return commodities[bestCommodityIndex];
+        return commodities[bestCommodityIndex] + " " + maxProfit;;
     }
 
     public static int totalProfitOnDay(int month, int day) {
-        return 1234;
+
     }
 
     public static int commodityProfitInRange(String commodity, int from, int to) {
