@@ -50,7 +50,7 @@ public class Main {
         for (int c = 0; c < COMMS; c++) {
             int sum = 0;
             for (int d = 0; d < DAYS; d++) {
-                sum = sum + profits[month][d][c];
+                sum += profits[month][d][c];
             }
             if (sum > maxProfit) {
                 maxProfit = sum;
@@ -65,7 +65,7 @@ public class Main {
             return -99999;
         }
         int total = 0;
-        day = day - 1;
+        day--;
         for (int c = 0; c < COMMS; c++) {
             total = total + profits[month][day][c];
         }
@@ -185,15 +185,38 @@ public class Main {
         for (int m = 0; m < MONTHS; m++) {
             for (int d = 0; d < DAYS; d++) {
                 if (profits[m][d][commodityIndex] > threshold) {
-                    count = count + 1;
+                    count++;
                 }
             }
         }
         return count;
     }
 
-    public static int biggestDailySwing(int month) { 
-        return 1234; 
+    public static int biggestDailySwing(int month) {
+        if (month < 0 || month >= MONTHS) {
+            return -9999;
+        }
+        int prevTotal = 0;
+
+        for (int c = 0; c < COMMS; c++) {
+            prevTotal += profits[month][0][c];
+        }
+        int maxSwing = 0;
+        for (int d = 1; d < DAYS; d++) {
+            int currentTotal = 0;
+            for (int c = 0; c < COMMS; c++) {
+                currentTotal += profits[month][d][c];
+            }
+            int diff = currentTotal - prevTotal;
+            if (diff < 0) {
+                diff = -diff;
+            }
+            if (diff > maxSwing) {
+                maxSwing = diff;
+            }
+            prevTotal = currentTotal;
+        }
+        return maxSwing;
     }
     
     public static String compareTwoCommodities(String c1, String c2) { 
