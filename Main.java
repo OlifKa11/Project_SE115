@@ -231,7 +231,7 @@ public class Main {
             }
         }
         if (index1 == -1 || index2 == -1) {
-            return "INVALID_COMMODITY";
+            return "INVALID_COMM";
         }
         int total1 = 0;
         int total2 = 0;
