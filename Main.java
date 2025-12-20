@@ -45,7 +45,10 @@ public class Main {
         if (month < 0 || month >= MONTHS) {
             return "INVALID_MONTH";
         }
-        int maxProfit = profits[month][0][0];
+        int maxProfit = 0;
+        for (int d = 0; d < DAYS; d++) {
+            maxProfit += profits[month][d][0];
+        }
         int bestCommodityIndex = 0;
         for (int c = 0; c < COMMS; c++) {
             int sum = 0;
@@ -77,6 +80,7 @@ public class Main {
         for (int c = 0; c < COMMS; c++) {
             if (commodities[c].equals(commodity)) {
                 commodityIndex = c;
+                break;
             }
         }
         if (commodityIndex == -1 || fromDay < 1 || toDay > DAYS || fromDay > toDay) {
@@ -120,6 +124,7 @@ public class Main {
         for (int c = 0; c < COMMS; c++) {
             if (commodities[c].equals(comm)) {
                 commodityIndex = c;
+                break;
             }
         }
         if (commodityIndex == -1) {
@@ -194,7 +199,7 @@ public class Main {
 
     public static int biggestDailySwing(int month) {
         if (month < 0 || month >= MONTHS) {
-            return -9999;
+            return -99999;
         }
         int prevTotal = 0;
 
@@ -231,7 +236,7 @@ public class Main {
             }
         }
         if (index1 == -1 || index2 == -1) {
-            return "INVALID_COMM";
+            return "INVALID_COMMODITY";
         }
         int total1 = 0;
         int total2 = 0;
