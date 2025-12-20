@@ -18,6 +18,9 @@ public class Main {
             try {
                 File file = new File("Data_Files/" + months[m] + ".txt");
                 reader = new Scanner(file);
+                if (reader.hasNextLine()) {
+                    reader.nextLine();
+                }
                 while (reader.hasNextLine()) {
                     String[] info = reader.nextLine().split(",");
                     int day = Integer.parseInt(info[0].trim());
@@ -27,6 +30,7 @@ public class Main {
                     for (int c = 0; c < COMMS; c++) {
                         if (commodities[c].equals(commodity)) {
                             profits[m][day][c] = profit;
+                            break;
                         }
                     }
                 }
