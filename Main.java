@@ -18,9 +18,6 @@ public class Main {
             try {
                 File file = new File("Data_Files/" + months[m] + ".txt");
                 reader = new Scanner(file);
-                if (reader.hasNextLine()) {
-                    reader.nextLine();
-                }
                 while (reader.hasNextLine()) {
                     String[] info = reader.nextLine().split(",");
                     int day = Integer.parseInt(info[0].trim());
@@ -49,12 +46,12 @@ public class Main {
         if (month < 0 || month >= MONTHS) {
             return "INVALID_MONTH";
         }
+        int bestCommodityIndex = 0;
         int maxProfit = 0;
         for (int d = 0; d < DAYS; d++) {
             maxProfit += profits[month][d][0];
         }
-        int bestCommodityIndex = 0;
-        for (int c = 0; c < COMMS; c++) {
+        for (int c = 1; c < COMMS; c++) {
             int sum = 0;
             for (int d = 0; d < DAYS; d++) {
                 sum += profits[month][d][c];
@@ -157,6 +154,7 @@ public class Main {
         for (int c = 0; c < COMMS; c++) {
             if (commodities[c].equals(comm)) {
                 commodityIndex = c;
+                break;
             }
         }
         if (commodityIndex == -1) {
@@ -185,6 +183,7 @@ public class Main {
         for (int c = 0; c < COMMS; c++) {
             if (commodities[c].equals(comm)) {
                 commodityIndex = c;
+                break;
             }
         }
         if (commodityIndex == -1) {
@@ -237,6 +236,9 @@ public class Main {
             }
             if (commodities[c].equals(c2)) {
                 index2 = c;
+            }
+            if (index1 != -1 && index2 != -1) {
+                break;
             }
         }
         if (index1 == -1 || index2 == -1) {
