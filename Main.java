@@ -57,7 +57,7 @@ public class Main {
                 bestCommodityIndex = c;
             }
         }
-        return commodities[bestCommodityIndex] + " " + maxProfit;;
+        return commodities[bestCommodityIndex] + " " + maxProfit;
     }
 
     public static int totalProfitOnDay(int month, int day) {
