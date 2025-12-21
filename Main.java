@@ -1,6 +1,6 @@
 // Main.java — Students version
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.util.Scanner;
 
 public class Main {
     static final int MONTHS = 12;
@@ -48,15 +48,12 @@ public class Main {
         }
         int bestCommodityIndex = 0;
         int maxProfit = 0;
-        for (int d = 0; d < DAYS; d++) {
-            maxProfit += profits[month][d][0];
-        }
-        for (int c = 1; c < COMMS; c++) {
+        for (int c = 0; c < COMMS; c++) {
             int sum = 0;
             for (int d = 0; d < DAYS; d++) {
                 sum += profits[month][d][c];
             }
-            if (sum > maxProfit) {
+            if (c == 0 || sum > maxProfit) {
                 maxProfit = sum;
                 bestCommodityIndex = c;
             }
@@ -105,7 +102,7 @@ public class Main {
         int bestDayIndex = 0;
         int maxTotal = 0;
         for (int c = 0; c < COMMS; c++) {
-            maxTotal = maxTotal + profits[month][0][c];
+            maxTotal += profits[month][0][c];
         }
         for (int d = 1; d < DAYS; d++) {
             int total = 0;
@@ -134,7 +131,7 @@ public class Main {
         int bestMonthIndex = 0;
         int maxProfit = 0;
         for (int d = 0; d < DAYS; d++) {
-            maxProfit = maxProfit + profits[0][d][commodityIndex];
+            maxProfit += profits[0][d][commodityIndex];
         }
         for (int m = 1; m < MONTHS; m++) {
             int sum = 0;
@@ -271,7 +268,6 @@ public class Main {
             int weekProfit = 0;
             int startDay = w * 7;
             int endDay = startDay + 7;
-
             for (int d = startDay; d < endDay; d++) {
                 for (int c = 0; c < COMMS; c++) {
                     weekProfit += profits[month][d][c];
